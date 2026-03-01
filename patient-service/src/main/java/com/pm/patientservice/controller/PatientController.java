@@ -5,6 +5,7 @@ import com.pm.patientservice.service.PatientService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,11 @@ public class PatientController {
   public ResponseEntity<List<PatientResponseDTO>> getAllPatients() {
     List<PatientResponseDTO> responseDTOList = patientService.getAllPatients();
     return ResponseEntity.ok().body(responseDTOList);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<PatientResponseDTO> getPatientById(@PathVariable("id") String id) {
+    PatientResponseDTO responseDTO = patientService.getPatientById(id);
+    return ResponseEntity.ok().body(responseDTO); // Placeholder
   }
 }
