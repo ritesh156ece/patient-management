@@ -3,6 +3,7 @@ package com.pm.patientservice.service;
 import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.exception.ApiException;
+import com.pm.patientservice.grpc.BillingServiceGrpcClient;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
@@ -16,9 +17,11 @@ import org.springframework.stereotype.Service;
 public class PatientService {
 
   private final PatientRepository patientRepository;
+  private final BillingServiceGrpcClient billingServiceGrpcClient;
 
-  public PatientService(PatientRepository patientRepository) {
+  public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient) {
     this.patientRepository = patientRepository;
+    this.billingServiceGrpcClient = billingServiceGrpcClient;
   }
 
   public List<PatientResponseDTO> getAllPatients() {
@@ -49,6 +52,8 @@ public class PatientService {
           HttpStatus.BAD_REQUEST, "Email already exists: " + patientRequestDTO.getEmail());
     }
     Patient savedPatient = patientRepository.save(PatientMapper.toEntity(patientRequestDTO));
+    billingServiceGrpcClient.createBillingAccount(
+            savedPatient.getId().toString(), savedPatient.getName(), savedPatient.getEmail());
     return PatientMapper.toDTO(savedPatient);
   }
 

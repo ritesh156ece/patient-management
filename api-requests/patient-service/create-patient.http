@@ -1,0 +1,10 @@
+POST http://localhost:4000/v1/createPatient
+Content-Type: application/json
+
+{
+  "name": "John Cena",
+  "email": "jc@gmail.com",
+  "address": "1 Park street",
+  "dateOfBirth": "1990-01-01",
+  "registeredDate": "2024-01-01"
+}
