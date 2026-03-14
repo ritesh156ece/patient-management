@@ -14,6 +14,6 @@ spring:
         - id: api-docs-patient-route
           uri: http://patient-service:4000
           predicates:
-            - Path=/api-docs/v1/patients/**
+            - Path=/api-docs/patients/**
           filters:
-            - RewritePath=/api-docs/v1/patients,/v3/api-docs
+            - RewritePath=/api-docs/patients,/v3/api-docs
