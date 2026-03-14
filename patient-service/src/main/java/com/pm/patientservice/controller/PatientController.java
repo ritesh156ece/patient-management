@@ -13,7 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/patients")
 @Tag(name = "Patient API", description = "API for managing patients")
 public class PatientController {
 
@@ -23,14 +23,14 @@ public class PatientController {
     this.patientService = patientService;
   }
 
-  @GetMapping("/patients")
+  @GetMapping
   @Operation(summary = "Get all patients", description = "Retrieve a list of all patients")
   public ResponseEntity<List<PatientResponseDTO>> getAllPatients() {
     List<PatientResponseDTO> responseDTOList = patientService.getAllPatients();
     return ResponseEntity.ok().body(responseDTOList);
   }
 
-  @GetMapping("/patients/{id}")
+  @GetMapping("/{id}")
   @Operation(summary = "Get patient by ID", description = "Retrieve a patient by their unique ID")
   public ResponseEntity<PatientResponseDTO> getPatientById(@PathVariable("id") String id) {
     PatientResponseDTO responseDTO = patientService.getPatientById(id);
@@ -47,7 +47,7 @@ public class PatientController {
     return ResponseEntity.ok().body(responseDTO); // Placeholder
   }
 
-  @PutMapping("/patients/{id}")
+  @PutMapping("/{id}")
   @Operation(
       summary = "Update an existing patient",
       description = "Update the details of an existing patient by their unique ID")
@@ -58,7 +58,7 @@ public class PatientController {
     return ResponseEntity.ok().body(responseDTO); // Placeholder
   }
 
-  @DeleteMapping("/patients/{id}")
+  @DeleteMapping("/{id}")
   @Operation(
       summary = "Delete a patient",
       description = "Delete an existing patient by their unique ID")
