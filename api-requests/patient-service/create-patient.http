@@ -2,9 +2,9 @@ POST http://localhost:4000/v1/createPatient
 Content-Type: application/json
 
 {
-  "name": "Raj H",
-  "email": "rh@gmail.com",
-  "address": "2 Park street",
+  "name": "Rahul E",
+  "email": "rmtE@gmail.com",
+  "address": "3 Park street",
   "dateOfBirth": "1990-01-01",
   "registeredDate": "2024-01-01"
 }

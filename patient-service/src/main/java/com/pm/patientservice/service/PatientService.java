@@ -11,9 +11,12 @@ import com.pm.patientservice.repository.PatientRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class PatientService {
 
@@ -61,7 +64,9 @@ public class PatientService {
     billingServiceGrpcClient.createBillingAccount(
         savedPatient.getId().toString(), savedPatient.getName(), savedPatient.getEmail());
 
+    log.info("Created patient with id: {}", savedPatient.getId());
     kafkaProducer.sendEvent(savedPatient);
+    log.info("Sent patient creation event to Kafka for patient id: {}", savedPatient.getId());
     return PatientMapper.toDTO(savedPatient);
   }
 
