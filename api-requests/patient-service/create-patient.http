@@ -1,9 +1,10 @@
-POST http://localhost:4000/v1/patients/createPatient
+POST http://localhost:4004/api/patients/createPatient
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MzU3NDU2OCwiZXhwIjoxNzczNjEwNTY4fQ.fD4LdvdUynpspEd6qMjiqfXGPzv5Z21q4TtluYe4xVLe4VtR815K6RifYceUU6Hm
 
 {
-  "name": "Rahul E",
-  "email": "rmtE@gmail.com",
+  "name": "Rahul G",
+  "email": "rmtG@gmail.com",
   "address": "3 Park street",
   "dateOfBirth": "1990-01-01",
   "registeredDate": "2024-01-01"
